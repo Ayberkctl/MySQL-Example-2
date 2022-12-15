@@ -1,0 +1,40 @@
+CREATE TABLE `table`(users_name VARCHAR(255));
+explain users;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| users_id      | int(10)      | NO   | PRI | NULL    | auto_increment |
+| users_name    | varchar(255) | YES  |     | NULL    |                |
+| users_surname | varchar(255) | YES  |     | NULL    |                |
+| users_age     | int(11)      | YES  |     | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+
+INSERT INTO 
+users(users_name, users_surname,users_age) 
+values('ayberk','catal', '19');
+ALTER TABLE users CHANGE users_id users_id INT(10)AUTO_INCREMENT;
+ALTER TABLE users AUTO_INCREMENT = 5;
+INSERT INTO users SET users_name="alper", users_surname="catal", users_age=19;
+select * from users;
++----------+------------+---------------+-----------+
+| users_id | users_name | users_surname | users_age |
++----------+------------+---------------+-----------+
+|        1 | ayberk     | catal         |        19 |
+|        2 | ayberk     | catal         |        19 |
+|        5 | ayberk     | catal         |        19 |
+|        6 | alper      | catal         |        19 |
++----------+------------+---------------+-----------+
+select users_name, users_surname from users;
+select users_name as name, users_surname as surname from users;
+select users_name as name, users_surname as surname from users WHERE users_id=2 ;
+UPDATE users SET users_surname="null" WHERE users_id=5;
+DELETE FROM users WHERE users_id=2;
+
+INSERT 
+INTO users(users_name, users_surname,users_age) 
+values('utku','catal', '24'),('test','teest', '31');
+UPDATE users SET users_id=2 WHERE users_id=7;
+SELECT * FROM users WHERE users_id!=1;
+SELECT * FROM users WHERE users_id>3;
+SELECT * FROM users WHERE users_id!=1 && users_surname != "catal";
